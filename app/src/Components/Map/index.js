@@ -10,12 +10,10 @@ const style = {
 
 
 
-
+var htmlDoc = {__html: mapHtml};
 function Map() {
   return (
-    <MapDiv>
-      <iframe src={{mapHtml}} />
-    </MapDiv>
+    <MapDiv dangerouslySetInnerHTML={htmlDoc}/>
   )
 }
 
