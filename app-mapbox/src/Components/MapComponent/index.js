@@ -5,18 +5,29 @@ import { useState, useRef } from 'react';
 import {clusterLayer, clusterCountLayer, unclusteredPointLayer} from './layers';
 import testData from './testData.json'
 const token = process.env.REACT_APP_MAPBOX_API_KEY;
-
-/*
-const [viewport, setViewPort] = useState({
-  latitude 
-})
-*/
+const fs = require('fs');
 
 function MapComponent() {
+  
+  const updateData = () => {
+    let obj = JSON.parse(testData);
+    obj['features'].push({ "geometry": { "type": "Point", "coordinates": [ -151.58, 63.1016, 0.0 ] } });
+    let jsonStr = JSON.stringify(obj);
+    
+    fs.writeFile(testData, jsonStr, function writeJSON(err) {
+      if (err) return console.log(err);
+      console.log(jsonStr);
+      console.log('writing to ' + testData);
+    });
+  }
+  
   
   const mapRef = React.useRef();
 
   const onClick = event => {
+    
+    //updateData();
+    //console.log(testData.features);
     const feature = event.features[0];
     const clusterId = feature.properties.cluster_id;
 
