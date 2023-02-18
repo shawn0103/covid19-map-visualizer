@@ -106,6 +106,66 @@
           0
         ]
       }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -151.58,
+          63.1016,
+          0
+        ]
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.58,
+          63.1016,
+          0
+        ]
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.58,
+          63.1016,
+          0
+        ]
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.58,
+          63.1016,
+          0
+        ]
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -151.58,
+          63.1016,
+          0
+        ]
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -151.58,
+          63.1016,
+          0
+        ]
+      }
     }
   ]
 }

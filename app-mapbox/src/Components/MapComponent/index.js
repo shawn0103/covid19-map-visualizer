@@ -3,7 +3,7 @@ import './style.css';
 import {Map, Source, Layer} from 'react-map-gl';
 import { useState, useRef } from 'react';
 import {clusterLayer, clusterCountLayer, unclusteredPointLayer} from './layers';
-import testData from './testData.json'
+import testData from './covid19.json'
 const token = process.env.REACT_APP_MAPBOX_API_KEY;
 const fs = require('fs');
 
