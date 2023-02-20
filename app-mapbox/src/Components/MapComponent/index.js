@@ -2,7 +2,7 @@ import * as React from 'react';
 import './style.css';
 import {Map, Source, Layer} from 'react-map-gl';
 import { useState, useRef } from 'react';
-import {clusterLayer, clusterCountLayer, unclusteredPointLayer} from './layers';
+import {clusterLayer, clusterCountLayer, unclusteredPointLayer, clusterLayer2, clusterCountLayer2, unclusteredPointLayer2} from './layers';
 import testData from './testData.json'
 import testDataAfghanistan from './testDataAfghanistan.json'
 import testDataAlbania from './testDataAlbania.json'
@@ -52,7 +52,6 @@ function MapComponent() {
             ref={mapRef}
           >
             <Source
-              id="afghan"
               type="geojson"
               data={testDataAfghanistan}
               cluster={true}
@@ -64,7 +63,6 @@ function MapComponent() {
               <Layer {...unclusteredPointLayer} />
             </Source>
             <Source
-              id="albania"
               type="geojson"
               data={testDataAlbania}
               cluster={true}

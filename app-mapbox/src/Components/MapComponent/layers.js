@@ -1,7 +1,6 @@
 import {LayerProps} from 'react-map-gl';
 
 export const clusterLayer = {
-  id: 'clusters',
   type: 'circle',
   source: 'earthquakes',
   filter: ['has', 'point_count'],
@@ -11,8 +10,9 @@ export const clusterLayer = {
   }
 };
 
+
+
 export const clusterCountLayer = {
-  id: 'cluster-count',
   type: 'symbol',
   source: 'earthquakes',
   filter: ['has', 'point_count'],
@@ -23,8 +23,9 @@ export const clusterCountLayer = {
   }
 };
 
+
+
 export const unclusteredPointLayer = {
-  id: 'unclustered-point',
   type: 'circle',
   source: 'earthquakes',
   filter: ['!', ['has', 'point_count']],
