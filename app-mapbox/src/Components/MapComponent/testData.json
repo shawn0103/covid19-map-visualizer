@@ -1,0 +1,37 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "geometry": {
+          "coordinates": [
+            -151.53,
+            63.1016
+          ]
+        }
+      },
+      {
+        "geometry": {
+          "coordinates": [
+            -151.53,
+            63.1016
+          ]
+        }
+      },
+      {
+        "geometry": {
+          "coordinates": [
+            -151.53,
+            63.1016
+          ]
+        }
+      },
+      {
+        "geometry": {
+          "coordinates": [
+            -151.53,
+            63.1016
+          ]
+        }
+      }
+    ]
+  }

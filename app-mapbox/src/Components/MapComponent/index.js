@@ -1,9 +1,10 @@
 import * as React from 'react';
 import './style.css';
 import {Map, Source, Layer} from 'react-map-gl';
-import { useState, useRef } from 'react';
-import {clusterLayer, clusterCountLayer, unclusteredPointLayer, clusterLayer2, clusterCountLayer2, unclusteredPointLayer2} from './layers';
-import covid19dataBrazil from './GeoJSON/covid19dataBrazil.json'
+import { useState, useRef, useEffect } from 'react';
+import {clusterLayer, clusterCountLayer, unclusteredPointLayer} from './layers';
+import testData from './testData.json'
+//import covid19dataBrazil from './GeoJSON/covid19dataBrazil.json'
 /*
 import  from './GeoJSON'
 import  from './GeoJSON'
@@ -155,6 +156,10 @@ function MapComponent() {
       });
     });
   };
+
+    //const renderPoints = (data) => {
+
+   // }
   
   return (
     <div className='map'> 
@@ -173,8 +178,8 @@ function MapComponent() {
           >
             <Source
               type="geojson"
-              data={covid19dataBrazil}
               cluster={true}
+              data={testData}
               clusterMaxZoom={14}
               clusterRadius={50}
             >
