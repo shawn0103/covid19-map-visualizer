@@ -10,6 +10,10 @@ app.get('/', (req, res) => {
  res.send('Hello World!')
 })
 
+app.get('/fetchCaseFatality', (req, res) => {
+    res.download('./case_fatality_ratio.json')
+   })
+
 app.use(express.json());
 
 app.post('/updatedata',(req,res)=>{
