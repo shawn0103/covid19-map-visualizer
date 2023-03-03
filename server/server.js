@@ -13,7 +13,12 @@ app.get('/', (req, res) => {
 
 app.get('/fetchCaseFatality', cors(), (req, res) => {
     res.download('./case_fatality_ratio.json')
-   })
+})
+
+app.get('/fetchTotalDeaths', cors(), (req, res) => {
+    res.download('./deaths.json')
+})
+
 
 app.use(express.json());
 

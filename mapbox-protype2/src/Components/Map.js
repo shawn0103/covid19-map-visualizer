@@ -29,7 +29,7 @@ const Map = () => {
           type: 'geojson',
           // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
           // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
-          data: 'http://localhost:4000/fetchCaseFatality',
+          data: 'http://localhost:4000/fetchTotalDeaths',
           cluster: true,
           clusterMaxZoom: 14, // Max zoom to cluster points on
           clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
@@ -53,7 +53,9 @@ const Map = () => {
             100,
             '#f1f075',
             750,
-            '#f28cb1'
+            '#f28cb1',
+            1500,
+            '#FF4242' 
             ],
             'circle-radius': [
             'step',
