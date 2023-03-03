@@ -7,10 +7,10 @@ const Map = () => {
 
     const mapContainer = useRef(null);
     const map = useRef(null);
-    const [lng, setLng] = useState(-70.9);
-    const [lat, setLat] = useState(42.35);
-    const [zoom, setZoom] = useState(4);
-    
+    const [lng, setLng] = useState(17.67);
+    const [lat, setLat] = useState(30.08);
+    const [zoom, setZoom] = useState(1.75);
+  
     /* Cluster example */
     useEffect(() => {
       if (map.current) return; // initialize map only once
@@ -20,7 +20,9 @@ const Map = () => {
       //For globe style:
       //style: 'mapbox://styles/mapbox/dark-v11',
       center: [lng, lat],
-      zoom: zoom
+      zoom: zoom,
+      //maxZoom: 15,
+      minZoom: 1.75
       });
       map.current.on('load', () => {
         map.current.addSource('covid', {

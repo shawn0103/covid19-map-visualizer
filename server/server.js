@@ -4,13 +4,14 @@ const express = require('express')
 const app = express()
 const port = 4000
 const fs = require('fs');
+const cors = require('cors')
 
 
 app.get('/', (req, res) => {
  res.send('Hello World!')
 })
 
-app.get('/fetchCaseFatality', (req, res) => {
+app.get('/fetchCaseFatality', cors(), (req, res) => {
     res.download('./case_fatality_ratio.json')
    })
 
