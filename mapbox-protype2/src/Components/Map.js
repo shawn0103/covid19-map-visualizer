@@ -10,10 +10,12 @@ const Map = () => {
     const [lng, setLng] = useState(17.67);
     const [lat, setLat] = useState(30.08);
     const [zoom, setZoom] = useState(1.75);
-  
-    /* Cluster example */
+    
+    const [totalDeaths, loadTotalDeaths] = useState(false);
+    const [case_fatality, loadCase_fatality] = useState(true);
+    
     useEffect(() => {
-      if (map.current) return; // initialize map only once
+      if (map.current) return; 
       map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/dark-v9',
@@ -21,18 +23,18 @@ const Map = () => {
       //style: 'mapbox://styles/mapbox/dark-v11',
       center: [lng, lat],
       zoom: zoom,
-      //maxZoom: 15,
+      maxZoom: 6,
       minZoom: 1.75
       });
+      console.log(`not event zoom: ${map.current.getZoom()}`)
       map.current.on('load', () => {
         map.current.addSource('covid', {
           type: 'geojson',
-          // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
-          // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
-          data: 'http://localhost:4000/fetchTotalDeaths',
+          ...(case_fatality && { data: "http://localhost:4000/fetchCaseFatality" }),
+          ...(totalDeaths && { data: "http://localhost:4000/fetchTotalDeaths" }),
           cluster: true,
-          clusterMaxZoom: 14, // Max zoom to cluster points on
-          clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+          clusterMaxZoom: 14, 
+          clusterRadius: 50 
           });
   
           map.current.addLayer({
@@ -40,35 +42,52 @@ const Map = () => {
             type: 'circle',
             source: 'covid',
             filter: ['has', 'point_count'],
-            paint: {
-            // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
-            // with three steps to implement three types of circles:
-            //   * Blue, 20px circles when point count is less than 100
-            //   * Yellow, 30px circles when point count is between 100 and 750
-            //   * Pink, 40px circles when point count is greater than or equal to 750
-            'circle-color': [
-            'step',
-            ['get', 'point_count'],
-            '#51bbd6',
-            100,
-            '#f1f075',
-            750,
-            '#f28cb1',
-            1500,
-            '#FF4242' 
-            ],
-            'circle-radius': [
-            'step',
-            ['get', 'point_count'],
-            20,
-            100,
-            30,
-            750,
-            40
-            ]
-            }
+            ...(case_fatality && { paint: {
+              'circle-color': [
+              'step',
+              ['get', 'point_count'],
+              '#51bbd6',
+              100,
+              '#f1f075',
+              500,
+              '#f28cb1',
+              1000,
+              '#FF4242' 
+              ],
+              'circle-radius': [
+              'step',
+              ['get', 'point_count'],
+              20,
+              100,
+              30,
+              750,
+              40
+              ]
+              }}),
+            ...(totalDeaths && { paint:{
+              'circle-color': [
+              'step',
+              ['get', 'point_count'],
+              '#51bbd6',
+              380,
+              '#f1f075',
+              3164,
+              '#f28cb1',
+              18506,
+              '#FF4242' 
+              ],
+              'circle-radius': [
+              'step',
+              ['get', 'point_count'],
+              20,
+              100,
+              30,
+              750,
+              40
+              ]
+              } })
             });
-  
+
             map.current.addLayer({
               id: 'cluster-count',
               type: 'symbol',
@@ -94,6 +113,178 @@ const Map = () => {
               }
               });
       })
+
+      map.current.on('zoom', () =>{
+        console.log(`event zoom: ${map.current.getZoom()}`);
+        if(map.current.getZoom() > 4){
+          
+          map.current.removeLayer('clusters');
+          
+          map.current.addLayer({
+            id: 'clusters',
+            type: 'circle',
+            source: 'covid',
+            filter: ['has', 'point_count'],
+            ...(case_fatality && { paint: {
+              'circle-color': [
+              'step',
+              ['get', 'point_count'],
+              '#51bbd6',
+              100,
+              '#f1f075',
+              500,
+              '#f28cb1',
+              1000,
+              '#FF4242' 
+              ],
+              'circle-radius': [
+              'step',
+              ['get', 'point_count'],
+              20,
+              100,
+              30,
+              750,
+              40
+              ]
+              }}),
+            ...(totalDeaths && { paint:{
+              'circle-color': [
+              'step',
+              ['get', 'point_count'],
+              '#51bbd6',
+              167,
+              '#f1f075',
+              1388,
+              '#f28cb1',
+              8117,
+              '#FF4242' 
+              ],
+              'circle-radius': [
+              'step',
+              ['get', 'point_count'],
+              20,
+              100,
+              30,
+              750,
+              40
+              ]
+              } })
+            });
+            
+            map.current.removeLayer('cluster-count');
+            
+            map.current.addLayer({
+              id: 'cluster-count',
+              type: 'symbol',
+              source: 'covid',
+              filter: ['has', 'point_count'],
+              layout: {
+              'text-field': ['get', 'point_count_abbreviated'],
+              'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+              'text-size': 12
+              }
+              });
+              
+              map.current.removeLayer('unclustered-point'); 
+              
+              map.current.addLayer({
+              id: 'unclustered-point',
+              type: 'circle',
+              source: 'covid',
+              filter: ['!', ['has', 'point_count']],
+              paint: {
+              'circle-color': '#11b4da',
+              'circle-radius': 4,
+              'circle-stroke-width': 1,
+              'circle-stroke-color': '#fff'
+              }
+              });
+        }else {
+          
+          map.current.removeLayer('clusters');
+          
+          map.current.addLayer({
+            id: 'clusters',
+            type: 'circle',
+            source: 'covid',
+            filter: ['has', 'point_count'],
+            ...(case_fatality && { paint: {
+              'circle-color': [
+              'step',
+              ['get', 'point_count'],
+              '#51bbd6',
+              100,
+              '#f1f075',
+              500,
+              '#f28cb1',
+              1000,
+              '#FF4242' 
+              ],
+              'circle-radius': [
+              'step',
+              ['get', 'point_count'],
+              20,
+              100,
+              30,
+              750,
+              40
+              ]
+              }}),
+            ...(totalDeaths && { paint:{
+              'circle-color': [
+              'step',
+              ['get', 'point_count'],
+              '#51bbd6',
+              380,
+              '#f1f075',
+              3164,
+              '#f28cb1',
+              18506,
+              '#FF4242' 
+              ],
+              'circle-radius': [
+              'step',
+              ['get', 'point_count'],
+              20,
+              100,
+              30,
+              750,
+              40
+              ]
+              } })
+            });
+            
+            map.current.removeLayer('cluster-count');
+            
+            map.current.addLayer({
+              id: 'cluster-count',
+              type: 'symbol',
+              source: 'covid',
+              filter: ['has', 'point_count'],
+              layout: {
+              'text-field': ['get', 'point_count_abbreviated'],
+              'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+              'text-size': 12
+              }
+              });
+              
+              map.current.removeLayer('unclustered-point'); 
+              
+              map.current.addLayer({
+              id: 'unclustered-point',
+              type: 'circle',
+              source: 'covid',
+              filter: ['!', ['has', 'point_count']],
+              paint: {
+              'circle-color': '#11b4da',
+              'circle-radius': 4,
+              'circle-stroke-width': 1,
+              'circle-stroke-color': '#fff'
+              }
+              });
+        }
+      })
+     // map.current.legendControl.addLegend(document.getElementById('legend').innerHTML);
       });
   /*
   useEffect(() => {
