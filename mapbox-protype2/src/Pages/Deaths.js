@@ -6,9 +6,11 @@ import BarChart from '../Components/BarChart';
 import {Link} from 'react-router-dom';
 
 
-function CaseFatality() {
+function Deaths() {
 
-  const [totalDeaths, loadTotalDeaths] = useState(false);
+
+  
+ const [totalDeaths, loadTotalDeaths] = useState(false);
   const [case_fatality, loadCase_fatality] = useState(true);
   const [mapKey, setMapKey] = useState(0);
   const [showMap, setShowMap] = useState(true);
@@ -27,26 +29,19 @@ function CaseFatality() {
     //console.log(`rendering case fatality ${case_fatality}`);
   }
 
-
-  const reloadPage = () => {
-    window.location.reload();
-  }
-
-  useEffect(() => {
-   
-  },[totalDeaths])
+  
   return (
     <div className="App">
       <div className='NavBar'>
         <h1>COVID-19 Dashboard</h1>
       </div>
         <div className='Map-Selection'>
-            <Link to="/deaths">
-                <button className='btn' onClick={reloadPage}>Total Deaths</button>
-            </Link>
-            <Link to="/">
-                <button className='btn' onClick={reloadPage}>Case fatality ratio</button>
-            </Link>
+            <a href="/deaths">
+                <button className='btn' onClick={() => window.location.reload(true)}>Total Deaths</button>
+            </a>
+            <a href="/">
+                <button className='btn' onClick={() => window.location.reload(true)}>Case fatality ratio</button>
+            </a>
 
           </div>
         <div className='Visualiztion-Row'>
@@ -84,4 +79,4 @@ function CaseFatality() {
   );
 }
 
-export default CaseFatality;
+export default Deaths;

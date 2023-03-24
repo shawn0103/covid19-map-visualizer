@@ -18,7 +18,7 @@ const Map = (props) => {
     
 
     useEffect(() => {
-      if (map.current) return; 
+      if (map.current) return;
       console.log(`Death prop: ${totalDeaths}`);
       console.log(`Case fatality prop: ${case_fatality}`)
       map.current = new mapboxgl.Map({

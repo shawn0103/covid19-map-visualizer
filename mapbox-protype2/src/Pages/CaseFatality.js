@@ -26,21 +26,28 @@ function CaseFatality() {
     //console.log(`rendering case fatality ${case_fatality}`);
   }
 
+  /*
   useEffect(() => {
-   
-  },[totalDeaths])
+    if(reloadCount < 2) {
+      sessionStorage.setItem('reloadCount', String(reloadCount + 1));
+      window.location.reload();
+    } else {
+      sessionStorage.removeItem('reloadCount');
+    }
+  }, []);
+*/
   return (
     <div className="App">
       <div className='NavBar'>
         <h1>COVID-19 Dashboard</h1>
       </div>
         <div className='Map-Selection'>
-        <Link to="/deaths">
-            <button className='btn' onClick={renderDeaths}>Total Deaths</button>
-        </Link>
-        <Link to="/">
-            <button className='btn' onClick={renderCasefatality}>Case fatality ratio</button>
-        </Link>
+        <a href="/deaths">
+            <button className='btn' onClick={() => window.location.reload(true)}>Total Deaths</button>
+        </a>
+        <a href="/">
+            <button className='btn' onClick={() => window.location.reload(true)}>Case fatality ratio</button>
+        </a>
         </div>
         <div className='Visualiztion-Row'>
           <div className='Stats'>
