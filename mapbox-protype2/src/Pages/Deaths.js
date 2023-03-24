@@ -4,7 +4,7 @@ import Map from '../Components/Map';
 import PieChart from '../Components/PieChart';
 import BarChart from '../Components/BarChart';
 import {Link} from 'react-router-dom';
-
+import stats from '../data/stats.json'
 
 function Deaths() {
 
@@ -44,34 +44,39 @@ function Deaths() {
             </a>
 
           </div>
+          <div className='disclaimer'>Disclaimer: This visualization may take time to load as the dataset is roughly 200mb in size</div>
         <div className='Visualiztion-Row'>
           <div className='Stats'>
-            <div className='card'>
+          <div className='card'>
               <h3> Total Cases </h3>
-              <h1> 123 </h1>
+              <h1> {`${stats.totalCases}`} </h1>
             </div>
             <div className='card'>
               <h3> Total Deaths </h3>
-              <h1> 123 </h1>
+              <h1> {`${stats.totalDeaths}`} </h1>
             </div>
             <div className='card'>
               <h3> Cases per 1000 people </h3>
-              <h1> 123 </h1>
+              <h1> {`${stats.cases_per_1000}`} </h1>
             </div>
             <div className='card'>
               <h3> Last Updated </h3>
-              <h1>22/3/2023</h1>
+              <h1>{`${stats.lastUpdated}`}</h1>
             </div>
           </div>
           <div className='Map-Component-Container'>
             <Map totalDeaths={true} case_fatality={false} key={mapKey}/>
           </div>
           <div className='Stats'>
+          <div className='stats-heading'>
+              <h3>Vaccination Statistics</h3>
+            </div>
             <div className='Bar'>
               <BarChart/>
             </div>
             <div className='Pie'>
               <PieChart/>
+              <h5>Click on the boxes to interact!</h5>
             </div>
           </div>
         </div>

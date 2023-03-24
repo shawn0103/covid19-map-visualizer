@@ -1,7 +1,7 @@
 import React from 'react'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
-//import vaccines from '../../../server/vaccines.json'
+import vaccines from '../data/vaccines.json'
 
 const PieChart = () => {
    
@@ -13,19 +13,19 @@ const data = {
   datasets: [
     {
       label: 'Vaccines administered',
-      data: [939904167926, 263357674637, 82093563042, 31021031484, 26013600382,31018721338],
+      data: [vaccines['Pfizer/BioNTech'], vaccines['Moderna'], vaccines['Oxford/AstraZeneca'], vaccines['Sinopharm/Beijing'], vaccines['Johnson&Johnson'],vaccines['Others']],
       backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)'
+        'rgba(191, 97, 106, 0.5)',
+        'rgba(136,192,208,0.5)',
+        'rgba(235,203,139,0.5)',
+        'rgba(75, 192, 192, 0.5)',
+        'rgba(153, 102, 255, 0.5)',
+        'rgba(255, 159, 64, 0.5)'
       ],
       borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
+        'rgba(191, 97, 106, 1)',
+        'rgba(136,192,208,1)',
+        'rgba(235,203,139,1)',
         'rgba(75, 192, 192, 1)',
         'rgba(153, 102, 255, 1)',
         'rgba(255, 159, 64, 1)'
