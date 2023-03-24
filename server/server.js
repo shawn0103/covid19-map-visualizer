@@ -19,6 +19,9 @@ app.get('/fetchTotalDeaths', cors(), (req, res) => {
     res.download('./deaths.json')
 })
 
+app.get('/fetchVaccines', cors(), (req, res) => {
+    res.download('./vaccines.json')
+})
 
 app.use(express.json());
 
@@ -44,5 +47,5 @@ app.post('/updatedata',(req,res)=>{
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`App listening on port ${port}`)
 })

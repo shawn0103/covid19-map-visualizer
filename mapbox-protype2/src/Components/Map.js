@@ -1,8 +1,8 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, memo } from 'react';
 import './map.css'
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 
-const Map = () => {
+const Map = (props) => {
     mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY;
 
     const mapContainer = useRef(null);
@@ -11,11 +11,14 @@ const Map = () => {
     const [lat, setLat] = useState(30.08);
     const [zoom, setZoom] = useState(1.75);
     
-    const [totalDeaths, loadTotalDeaths] = useState(false);
-    const [case_fatality, loadCase_fatality] = useState(true);
+    const [totalDeaths, loadTotalDeaths] = useState(props.totalDeaths);
+    const [case_fatality, loadCase_fatality] = useState(props.case_fatality);
     
+
     useEffect(() => {
       if (map.current) return; 
+      console.log(`Death prop: ${totalDeaths}`);
+      console.log(`Case fatality prop: ${case_fatality}`)
       map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/dark-v9',
@@ -46,13 +49,13 @@ const Map = () => {
               'circle-color': [
               'step',
               ['get', 'point_count'],
-              '#51bbd6',
+              '#88C0D0',
               100,
-              '#f1f075',
+              '#EBCB8B',
               500,
-              '#f28cb1',
+              '#D08770',
               1000,
-              '#FF4242' 
+              '#BF616A' 
               ],
               'circle-radius': [
               'step',
@@ -68,13 +71,13 @@ const Map = () => {
               'circle-color': [
               'step',
               ['get', 'point_count'],
-              '#51bbd6',
+              '#88C0D0',
               380,
-              '#f1f075',
+              '#EBCB8B',
               3164,
-              '#f28cb1',
+              '#D08770',
               18506,
-              '#FF4242' 
+              '#BF616A' 
               ],
               'circle-radius': [
               'step',
@@ -129,13 +132,13 @@ const Map = () => {
               'circle-color': [
               'step',
               ['get', 'point_count'],
-              '#51bbd6',
+              '#88C0D0',
               100,
-              '#f1f075',
+              '#EBCB8B',
               500,
-              '#f28cb1',
+              '#D08770',
               1000,
-              '#FF4242' 
+              '#BF616A' 
               ],
               'circle-radius': [
               'step',
@@ -151,13 +154,13 @@ const Map = () => {
               'circle-color': [
               'step',
               ['get', 'point_count'],
-              '#51bbd6',
+              '#88C0D0',
               167,
-              '#f1f075',
+              '#EBCB8B',
               1388,
-              '#f28cb1',
+              '#D08770',
               8117,
-              '#FF4242' 
+              '#BF616A' 
               ],
               'circle-radius': [
               'step',
@@ -212,13 +215,13 @@ const Map = () => {
               'circle-color': [
               'step',
               ['get', 'point_count'],
-              '#51bbd6',
+              '#88C0D0',
               100,
-              '#f1f075',
+              '#EBCB8B',
               500,
-              '#f28cb1',
+              '#D08770',
               1000,
-              '#FF4242' 
+              '#BF616A' 
               ],
               'circle-radius': [
               'step',
@@ -234,13 +237,13 @@ const Map = () => {
               'circle-color': [
               'step',
               ['get', 'point_count'],
-              '#51bbd6',
+              '#88C0D0',
               380,
-              '#f1f075',
+              '#EBCB8B',
               3164,
-              '#f28cb1',
+              '#D08770',
               18506,
-              '#FF4242' 
+              '#BF616A' 
               ],
               'circle-radius': [
               'step',
@@ -285,7 +288,11 @@ const Map = () => {
         }
       })
      // map.current.legendControl.addLegend(document.getElementById('legend').innerHTML);
-      });
+      },[totalDeaths, case_fatality]);
+
+
+
+
   /*
   useEffect(() => {
     if (map.current) return; // initialize map only once
@@ -314,11 +321,20 @@ const Map = () => {
     })
     });
     */
+    
+    const renderDeaths = () => {
+      loadCase_fatality(false);
+      loadTotalDeaths(true);
+    }
   
+    const renderCasefatality = () => {
+      loadTotalDeaths(false);
+      loadCase_fatality(true);
+    }
   
   
     return (
-    <div ref={mapContainer} className="map-container" />
+      <div ref={mapContainer} className="map-container" />
   )
 }
 
