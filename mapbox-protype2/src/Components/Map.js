@@ -3,6 +3,8 @@ import './map.css'
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 
 const Map = (props) => {
+  
+  
     mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY;
 
     const mapContainer = useRef(null);
@@ -288,51 +290,7 @@ const Map = (props) => {
         }
       })
      // map.current.legendControl.addLegend(document.getElementById('legend').innerHTML);
-      },[totalDeaths, case_fatality]);
-
-
-
-
-  /*
-  useEffect(() => {
-    if (map.current) return; // initialize map only once
-    map.current = new mapboxgl.Map({
-    container: mapContainer.current,
-    style: 'mapbox://styles/mapbox/light-v11',
-    zoom: 13,
-    center: [-122.447303, 37.753574]
-    });
-    map.current.on('load', () => {
-      map.current.addSource('mapbox-terrain', {
-        type: 'vector',
-        // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
-        // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
-        url: 'mapbox://mapbox.mapbox-terrain-v2',
-        });
-  
-        map.current.addLayer(
-          {
-          'id': 'terrain-data',
-          'type': 'point',
-          'source': 'shawn0103.6yke99gz',
-          'source-layer': 'contour'
-          }
-          );
-    })
-    });
-    */
-    
-    const renderDeaths = () => {
-      loadCase_fatality(false);
-      loadTotalDeaths(true);
-    }
-  
-    const renderCasefatality = () => {
-      loadTotalDeaths(false);
-      loadCase_fatality(true);
-    }
-  
-  
+      });
     return (
       <div ref={mapContainer} className="map-container" />
   )

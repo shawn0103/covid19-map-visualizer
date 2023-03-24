@@ -14,10 +14,10 @@ function CaseFatality() {
   const [showMap, setShowMap] = useState(true);
   
   const renderDeaths = () => {
-    loadCase_fatality(false);
-    loadTotalDeaths(true);
+    //loadCase_fatality(false);
+    //loadTotalDeaths(true);
     //console.log(`rendering deaths value: ${totalDeaths}`);
-    setMapKey((prevKey) => prevKey + 1);
+    //setMapKey((prevKey) => prevKey + 1);
   }
 
   const renderCasefatality = () => {
@@ -25,6 +25,11 @@ function CaseFatality() {
     loadCase_fatality(true);
     setMapKey((prevKey) => prevKey + 1);
     //console.log(`rendering case fatality ${case_fatality}`);
+  }
+
+
+  const reloadPage = () => {
+    window.location.reload();
   }
 
   useEffect(() => {
@@ -37,11 +42,12 @@ function CaseFatality() {
       </div>
         <div className='Map-Selection'>
             <Link to="/deaths">
-                <button className='btn' onClick={renderDeaths}>Total Deaths</button>
+                <button className='btn' onClick={reloadPage}>Total Deaths</button>
             </Link>
             <Link to="/">
-                <button className='btn' onClick={renderCasefatality}>Case fatality ratio</button>
+                <button className='btn' onClick={reloadPage}>Case fatality ratio</button>
             </Link>
+
           </div>
         <div className='Visualiztion-Row'>
           <div className='Stats'>
