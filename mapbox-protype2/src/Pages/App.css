@@ -21,6 +21,7 @@
   width: 100vw;
   display: flex;
   justify-content: center;
+  text-align: center;
 }
 
 .Map-Selection{
@@ -130,6 +131,7 @@
   justify-content: center;
   align-items: center;
   padding-top: 1vh;
+  text-align: center;
 }
 
 .stats-heading{
@@ -144,9 +146,61 @@
 .card-text-container{
   padding-left: 1vw;
   padding-right: 1vw;
-  font-size: large;
+  font-size: medium;
 }
 
 .card-title{
   margin-bottom: -1vh;
+}
+
+.Map-Selection-responsive{
+  display: none;
+}
+
+.mobile-container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@media only screen and (max-width: 1500px) {
+  .btn{
+    font-size: small;
+    width: 20vw;
+  }
+
+  .Stats{
+    display: none;
+  }
+
+  .Map-Component-Container{
+    width: 100vw;
+  }
+
+  .Map-Selection{
+    margin-bottom: -1vh;
+  }
+
+}
+
+@media only screen and (max-height: 800px) {
+  .btn{
+    font-size: small;
+    width: 20vw;
+  }
+
+  .Stats{
+    display: none;
+  }
+
+  .Map-Component-Container{
+    width: 100vw;
+  }
+  .Map-Selection{
+    margin-bottom: -1vh;
+  }
 }

@@ -5,6 +5,7 @@ import PieChart from '../Components/PieChart';
 import BarChart from '../Components/BarChart';
 import {Link} from 'react-router-dom';
 import stats from '../data/stats.json'
+import {BrowserView, MobileView} from 'react-device-detect';
 
 function Cases_per_1000() {
 
@@ -32,6 +33,7 @@ function Cases_per_1000() {
   
   return (
     <div className="App">
+      <BrowserView>
       <div className='NavBar'>
         <h1>COVID-19 Dashboard</h1>
       </div>
@@ -46,7 +48,7 @@ function Cases_per_1000() {
             <button className='btn' onClick={() => window.location.reload(true)}>Cases per 1000 people</button>
             </a>
 
-          </div>
+        </div>
           <div className='disclaimer'></div>
         <div className='Visualiztion-Row'>
           <div className='Stats'>
@@ -57,12 +59,12 @@ function Cases_per_1000() {
               </div>
             </div>
             <div className='card'>
-              <h3> Total Deaths </h3>
-              <h1> {`${stats.totalDeaths}`} </h1>
+              <h3> Total Cases </h3>
+              <h1> {`${stats.totalCases}`} </h1>
             </div>
             <div className='card'>
-              <h3> Cases per 1000 people </h3>
-              <h1> {`${stats.cases_per_1000}`} </h1>
+              <h3> Total Deaths </h3>
+              <h1> {`${stats.totalDeaths}`} </h1>
             </div>
             <div className='card'>
               <h3> Last Updated </h3>
@@ -85,6 +87,12 @@ function Cases_per_1000() {
             </div>
           </div>
         </div>
+        </BrowserView>
+        <MobileView>
+          <div className='mobile-container'>
+            <h3>Unfortunately the COVID-19 Dashboard does not support mobile devices due to hardware limitations. Please try again using a desktop computer.</h3>
+          </div>
+        </MobileView>
       </div>
   );
 }
