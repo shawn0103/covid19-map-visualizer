@@ -57,16 +57,18 @@ function CaseFatality() {
         <div className='Visualiztion-Row'>
           <div className='Stats'>
             <div className='card'>
+              <div className='card-text-container'>
+              <h3 className='card-title'> How are the metrics calculated?</h3>
+                <h4>The number of deaths are divided with the number of cases. The color of the clusters represent their density.</h4>
+              </div>
+            </div>
+            <div className='card'>
               <h3> Total Cases </h3>
               <h1> {`${stats.totalCases}`} </h1>
             </div>
             <div className='card'>
               <h3> Total Deaths </h3>
               <h1> {`${stats.totalDeaths}`} </h1>
-            </div>
-            <div className='card'>
-              <h3> Cases per 1000 people </h3>
-              <h1> {`${stats.cases_per_1000}`} </h1>
             </div>
             <div className='card'>
               <h3> Last Updated </h3>

@@ -50,8 +50,10 @@ function Deaths() {
         <div className='Visualiztion-Row'>
           <div className='Stats'>
           <div className='card'>
-              <h3> Total Cases </h3>
-              <h1> {`${stats.totalCases}`} </h1>
+              <div className='card-text-container'>
+              <h3 className='card-title'> How are the metrics calculated?</h3>
+                <h4>Each recorded death is grouped into clusters. The colors and sizes of the clusters represent their density.</h4>
+              </div>
             </div>
             <div className='card'>
               <h3> Total Deaths </h3>

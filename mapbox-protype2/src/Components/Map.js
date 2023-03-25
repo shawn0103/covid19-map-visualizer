@@ -96,11 +96,11 @@ const Map = (props) => {
                 'step',
                 ['get', 'point_count'],
                 '#88C0D0',
-                380,
+                252,
                 '#EBCB8B',
-                3164,
+                600,
                 '#D08770',
-                18506,
+                1120,
                 '#BF616A' 
                 ],
                 'circle-radius': [
@@ -157,11 +157,11 @@ const Map = (props) => {
               'step',
               ['get', 'point_count'],
               '#88C0D0',
-              100,
+              42,
               '#EBCB8B',
-              500,
+              104,
               '#D08770',
-              1000,
+              200,
               '#BF616A' 
               ],
               'circle-radius': [
@@ -179,11 +179,11 @@ const Map = (props) => {
               'step',
               ['get', 'point_count'],
               '#88C0D0',
-              167,
+              568,
               '#EBCB8B',
-              1388,
+              2418,
               '#D08770',
-              8117,
+              7309,
               '#BF616A' 
               ],
               'circle-radius': [
@@ -201,11 +201,11 @@ const Map = (props) => {
                 'step',
                 ['get', 'point_count'],
                 '#88C0D0',
-                167,
+                63,
                 '#EBCB8B',
-                1388,
+                150,
                 '#D08770',
-                8117,
+                280,
                 '#BF616A' 
                 ],
                 'circle-radius': [
@@ -248,7 +248,7 @@ const Map = (props) => {
               'circle-stroke-color': '#fff'
               }
               });
-        }else {
+        }else if((map.current.getZoom() > 2) && (map.current.getZoom() < 4)){
           
           map.current.removeLayer('clusters');
           
@@ -262,11 +262,11 @@ const Map = (props) => {
               'step',
               ['get', 'point_count'],
               '#88C0D0',
-              100,
+              42*2,
               '#EBCB8B',
-              500,
+              104*2,
               '#D08770',
-              1000,
+              200*2,
               '#BF616A' 
               ],
               'circle-radius': [
@@ -284,11 +284,11 @@ const Map = (props) => {
               'step',
               ['get', 'point_count'],
               '#88C0D0',
-              380,
+              568*2,
               '#EBCB8B',
-              3164,
+              2418*2,
               '#D08770',
-              18506,
+              7309*2,
               '#BF616A' 
               ],
               'circle-radius': [
@@ -306,11 +306,117 @@ const Map = (props) => {
                 'step',
                 ['get', 'point_count'],
                 '#88C0D0',
-                380,
+                63*2,
                 '#EBCB8B',
-                3164,
+                150*2,
                 '#D08770',
-                18506,
+                280*2,
+                '#BF616A' 
+                ],
+                'circle-radius': [
+                'step',
+                ['get', 'point_count'],
+                20,
+                100,
+                30,
+                750,
+                40
+                ]
+                } })
+            });
+            
+            map.current.removeLayer('cluster-count');
+            
+            map.current.addLayer({
+              id: 'cluster-count',
+              type: 'symbol',
+              source: 'covid',
+              filter: ['has', 'point_count'],
+              layout: {
+              'text-field': ['get', 'point_count_abbreviated'],
+              'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+              'text-size': 12
+              }
+              });
+              
+              map.current.removeLayer('unclustered-point'); 
+              
+              map.current.addLayer({
+              id: 'unclustered-point',
+              type: 'circle',
+              source: 'covid',
+              filter: ['!', ['has', 'point_count']],
+              paint: {
+              'circle-color': '#11b4da',
+              'circle-radius': 4,
+              'circle-stroke-width': 1,
+              'circle-stroke-color': '#fff'
+              }
+              });   
+        }
+        else{
+          
+          map.current.removeLayer('clusters');
+          
+          map.current.addLayer({
+            id: 'clusters',
+            type: 'circle',
+            source: 'covid',
+            filter: ['has', 'point_count'],
+            ...(case_fatality && { paint: {
+              'circle-color': [
+              'step',
+              ['get', 'point_count'],
+              '#88C0D0',
+              42*4,
+              '#EBCB8B',
+              104*4,
+              '#D08770',
+              200*4,
+              '#BF616A' 
+              ],
+              'circle-radius': [
+              'step',
+              ['get', 'point_count'],
+              20,
+              100,
+              30,
+              750,
+              40
+              ]
+              }}),
+            ...(totalDeaths && { paint:{
+              'circle-color': [
+              'step',
+              ['get', 'point_count'],
+              '#88C0D0',
+              568*4,
+              '#EBCB8B',
+              2418*4,
+              '#D08770',
+              7309*4,
+              '#BF616A' 
+              ],
+              'circle-radius': [
+              'step',
+              ['get', 'point_count'],
+              20,
+              100,
+              30,
+              750,
+              40
+              ]
+              } }),
+              ...(cases_per_1000 && { paint:{
+                'circle-color': [
+                'step',
+                ['get', 'point_count'],
+                '#88C0D0',
+                63*4,
+                '#EBCB8B',
+                150*4,
+                '#D08770',
+                280*4,
                 '#BF616A' 
                 ],
                 'circle-radius': [

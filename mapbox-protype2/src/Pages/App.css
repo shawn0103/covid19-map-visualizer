@@ -8,7 +8,7 @@
   background-color: #3B4252;
   color: #E5E9F0;
   font-family: 'Roboto', sans-serif;
-  overflow-x: scroll;
+  overflow-x: hidden;
 }
 
 .Visualization-Container{
@@ -94,6 +94,7 @@
   justify-content: center;
   align-items: center;
   height: 15vh;
+  text-align: center;
 }
 
 .card:hover{
@@ -140,3 +141,12 @@
   margin-top: 4vh;
 }
 
+.card-text-container{
+  padding-left: 1vw;
+  padding-right: 1vw;
+  font-size: large;
+}
+
+.card-title{
+  margin-bottom: -1vh;
+}
