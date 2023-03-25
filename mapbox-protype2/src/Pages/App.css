@@ -8,6 +8,7 @@
   background-color: #3B4252;
   color: #E5E9F0;
   font-family: 'Roboto', sans-serif;
+  overflow-x: scroll;
 }
 
 .Visualization-Container{
@@ -32,7 +33,7 @@
 }
 
 .btn{
-  width: 9vw;
+  width: 15vw;
   height: 5vh;
   margin-left: 2vh;
   margin-right: 2vh;
@@ -92,6 +93,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 15vh;
 }
 
 .card:hover{

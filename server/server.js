@@ -16,11 +16,15 @@ app.get('/fetchCaseFatality', cors(), (req, res) => {
 })
 
 app.get('/fetchTotalDeaths', cors(), (req, res) => {
-    res.download('./deaths.json')
+    res.download('../mapbox-protype2/src/data/deaths.json')
 })
 
 app.get('/fetchVaccines', cors(), (req, res) => {
-    res.download('./vaccines.json')
+    res.download('../mapbox-protype2/src/data/vaccines.json')
+})
+
+app.get('/fetchCasesPer1000', cors(), (req, res) => {
+    res.download('../mapbox-protype2/src/data/cases_per_1000.json')
 })
 
 app.use(express.json());

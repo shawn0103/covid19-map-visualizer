@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState, memo } from 'react';
 import './map.css'
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-
 const Map = (props) => {
   
   
@@ -15,7 +14,7 @@ const Map = (props) => {
     
     const [totalDeaths, loadTotalDeaths] = useState(props.totalDeaths);
     const [case_fatality, loadCase_fatality] = useState(props.case_fatality);
-    
+    const [cases_per_1000, loadCases_per_1000] = useState(props.cases_per_1000);
 
     useEffect(() => {
       if (map.current) return;
@@ -37,6 +36,7 @@ const Map = (props) => {
           type: 'geojson',
           ...(case_fatality && { data: "http://localhost:4000/fetchCaseFatality" }),
           ...(totalDeaths && { data: "http://localhost:4000/fetchTotalDeaths" }),
+          ...(cases_per_1000 && { data: "http://localhost:4000/fetchCasesPer1000" }),
           cluster: true,
           clusterMaxZoom: 14, 
           clusterRadius: 50 
@@ -90,7 +90,29 @@ const Map = (props) => {
               750,
               40
               ]
-              } })
+              } }),
+              ...(cases_per_1000 && { paint:{
+                'circle-color': [
+                'step',
+                ['get', 'point_count'],
+                '#88C0D0',
+                380,
+                '#EBCB8B',
+                3164,
+                '#D08770',
+                18506,
+                '#BF616A' 
+                ],
+                'circle-radius': [
+                'step',
+                ['get', 'point_count'],
+                20,
+                100,
+                30,
+                750,
+                40
+                ]
+                } })
             });
 
             map.current.addLayer({
@@ -173,7 +195,29 @@ const Map = (props) => {
               750,
               40
               ]
-              } })
+              } }),
+              ...(cases_per_1000 && { paint:{
+                'circle-color': [
+                'step',
+                ['get', 'point_count'],
+                '#88C0D0',
+                167,
+                '#EBCB8B',
+                1388,
+                '#D08770',
+                8117,
+                '#BF616A' 
+                ],
+                'circle-radius': [
+                'step',
+                ['get', 'point_count'],
+                20,
+                100,
+                30,
+                750,
+                40
+                ]
+                } })
             });
             
             map.current.removeLayer('cluster-count');
@@ -256,7 +300,29 @@ const Map = (props) => {
               750,
               40
               ]
-              } })
+              } }),
+              ...(cases_per_1000 && { paint:{
+                'circle-color': [
+                'step',
+                ['get', 'point_count'],
+                '#88C0D0',
+                380,
+                '#EBCB8B',
+                3164,
+                '#D08770',
+                18506,
+                '#BF616A' 
+                ],
+                'circle-radius': [
+                'step',
+                ['get', 'point_count'],
+                20,
+                100,
+                30,
+                750,
+                40
+                ]
+                } })
             });
             
             map.current.removeLayer('cluster-count');

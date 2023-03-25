@@ -42,7 +42,9 @@ function Deaths() {
             <a href="/">
                 <button className='btn' onClick={() => window.location.reload(true)}>Case fatality ratio</button>
             </a>
-
+            <a href="/casesper1000">
+            <button className='btn' onClick={() => window.location.reload(true)}>Cases per 1000 people</button>
+            </a>
           </div>
           <div className='disclaimer'>Disclaimer: This visualization may take time to load as the dataset is roughly 200mb in size</div>
         <div className='Visualiztion-Row'>
