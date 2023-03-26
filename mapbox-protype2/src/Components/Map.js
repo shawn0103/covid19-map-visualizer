@@ -3,7 +3,7 @@ import './map.css'
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 const Map = (props) => {
   
-  
+  //?raw=true
     mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY;
 
     const mapContainer = useRef(null);
@@ -34,9 +34,9 @@ const Map = (props) => {
       map.current.on('load', () => {
         map.current.addSource('covid', {
           type: 'geojson',
-          ...(case_fatality && { data: "http://localhost:4000/fetchCaseFatality" }),
-          ...(totalDeaths && { data: "http://localhost:4000/fetchTotalDeaths" }),
-          ...(cases_per_1000 && { data: "http://localhost:4000/fetchCasesPer1000" }),
+          ...(case_fatality && { data: "https://github.com/shawn0103/covid19-map-data/blob/master/case_fatality_ratio.json?raw=true" }),
+          ...(totalDeaths && { data: "https://github.com/shawn0103/covid19-map-data/blob/master/deaths.json?raw=true" }),
+          ...(cases_per_1000 && { data: "https://github.com/shawn0103/covid19-map-data/blob/master/cases_per_1000.json?raw=true" }),
           cluster: true,
           clusterMaxZoom: 14, 
           clusterRadius: 50 
