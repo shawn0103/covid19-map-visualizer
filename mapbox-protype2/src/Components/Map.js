@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, memo } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import './map.css'
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 const Map = (props) => {
@@ -8,13 +8,23 @@ const Map = (props) => {
 
     const mapContainer = useRef(null);
     const map = useRef(null);
+    /*
     const [lng, setLng] = useState(17.67);
     const [lat, setLat] = useState(30.08);
     const [zoom, setZoom] = useState(1.75);
-    
+*/
+    const lng = 17.67;
+    const lat = 30.08;
+    const zoom = 1.75;
+/*
     const [totalDeaths, loadTotalDeaths] = useState(props.totalDeaths);
     const [case_fatality, loadCase_fatality] = useState(props.case_fatality);
     const [cases_per_1000, loadCases_per_1000] = useState(props.cases_per_1000);
+*/
+
+const totalDeaths = props.totalDeaths;
+const case_fatality = props.case_fatality;
+const cases_per_1000 = props.cases_per_1000;
 
     useEffect(() => {
       if (map.current) return;
@@ -37,6 +47,9 @@ const Map = (props) => {
           ...(case_fatality && { data: "https://github.com/shawn0103/covid19-map-data/blob/master/case_fatality_ratio.json?raw=true" }),
           ...(totalDeaths && { data: "https://github.com/shawn0103/covid19-map-data/blob/master/deaths.json?raw=true" }),
           ...(cases_per_1000 && { data: "https://github.com/shawn0103/covid19-map-data/blob/master/cases_per_1000.json?raw=true" }),
+          //...(case_fatality && { data: "http://localhost:4000/fetchCaseFatality" }),
+          //...(totalDeaths && { data: "http://localhost:4000/fetchTotalDeaths" }),
+          //...(cases_per_1000 && { data: "http://localhost:4000/fetchCasesPer1000s" }),
           cluster: true,
           clusterMaxZoom: 14, 
           clusterRadius: 50 

@@ -1,32 +1,13 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React from 'react';
 import './App.css';
 import Map from '../Components/Map';
 import PieChart from '../Components/PieChart';
 import BarChart from '../Components/BarChart';
-import {Link} from 'react-router-dom';
 import stats from '../data/stats.json'
 import {BrowserView, MobileView} from 'react-device-detect';
 
 function CaseFatality() {
 
-  const [totalDeaths, loadTotalDeaths] = useState(false);
-  const [case_fatality, loadCase_fatality] = useState(true);
-  const [mapKey, setMapKey] = useState(0);
-  const [showMap, setShowMap] = useState(true);
-  
-  const renderDeaths = () => {
-    loadCase_fatality(false);
-    loadTotalDeaths(true);
-    //console.log(`rendering deaths value: ${totalDeaths}`);
-    setMapKey((prevKey) => prevKey + 1);
-  }
-
-  const renderCasefatality = () => {
-    loadTotalDeaths(false);
-    loadCase_fatality(true);
-    setMapKey((prevKey) => prevKey + 1);
-    //console.log(`rendering case fatality ${case_fatality}`);
-  }
 
   /*
   useEffect(() => {
@@ -78,7 +59,7 @@ function CaseFatality() {
             </div>
           </div>
           <div className='Map-Component-Container'>
-            <Map totalDeaths={false} case_fatality={true} key={mapKey}/>
+            <Map totalDeaths={false} case_fatality={true}/>
           </div>
           <div className='Stats'>
             <div className='stats-heading'>
