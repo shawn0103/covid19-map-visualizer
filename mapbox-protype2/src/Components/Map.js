@@ -44,12 +44,12 @@ const cases_per_1000 = props.cases_per_1000;
       map.current.on('load', () => {
         map.current.addSource('covid', {
           type: 'geojson',
-          ...(case_fatality && { data: "https://github.com/shawn0103/covid19-map-data/blob/master/case_fatality_ratio.json?raw=true" }),
-          ...(totalDeaths && { data: "https://github.com/shawn0103/covid19-map-data/blob/master/deaths.json?raw=true" }),
-          ...(cases_per_1000 && { data: "https://github.com/shawn0103/covid19-map-data/blob/master/cases_per_1000.json?raw=true" }),
+          ...(case_fatality && { data: "https://media.githubusercontent.com/media/shawn0103/covid19-map-data/master/case_fatality_ratio.json" }),
+          ...(totalDeaths && { data: "https://media.githubusercontent.com/media/shawn0103/covid19-map-data/master/deaths.json" }),
+          ...(cases_per_1000 && { data: "https://media.githubusercontent.com/media/shawn0103/covid19-map-data/master/cases_per_1000.json" }),
           //...(case_fatality && { data: "http://localhost:4000/fetchCaseFatality" }),
           //...(totalDeaths && { data: "http://localhost:4000/fetchTotalDeaths" }),
-          //...(cases_per_1000 && { data: "http://localhost:4000/fetchCasesPer1000s" }),
+          //..(cases_per_1000 && { data: "http://localhost:4000/fetchCasesPer1000" }),
           cluster: true,
           clusterMaxZoom: 14, 
           clusterRadius: 50 
