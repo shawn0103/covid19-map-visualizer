@@ -22,7 +22,7 @@ function CasesPer1000() {
                 <button className='btn' onClick={() => window.location.reload(true)}>Case fatality ratio</button>
             </a>
             <a href="/casesper1000">
-            <button className='btn' onClick={() => window.location.reload(true)}>Cases per 1000 people</button>
+            <button className='btn-current' onClick={() => window.location.reload(true)}>Cases per 1000 people</button>
             </a>
 
         </div>

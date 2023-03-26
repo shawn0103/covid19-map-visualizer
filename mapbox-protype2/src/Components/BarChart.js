@@ -13,6 +13,8 @@ import vaccines from '../data/vaccines.json'
 
 const options = {
   responsive: true,
+  //maintainAspectRatio: false,
+  //width: '20vw',
   plugins: {
     legend: {
       display: false

@@ -16,7 +16,7 @@ function Deaths() {
       </div>
         <div className='Map-Selection'>
             <a href="/deaths">
-                <button className='btn' onClick={() => window.location.reload(true)}>Total Deaths</button>
+                <button className='btn-current' onClick={() => window.location.reload(true)}>Total Deaths</button>
             </a>
             <a href="/">
                 <button className='btn' onClick={() => window.location.reload(true)}>Case fatality ratio</button>
