@@ -172,6 +172,14 @@
   padding-right: 1vw;
   font-size: small;
 }
+.line-container{
+  display: flex;
+  justify-content: space-evenly
+}
+
+#left{
+  margin-right: 1vw;
+}
 
 .card-title{
   margin-bottom: -1vh;
@@ -189,6 +197,69 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.dot-good{
+  height: 4vh;
+  width: 4vh;
+  background-color: #88C0D0;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.5vw;
+}
+
+.dot-good:hover{
+  border-style: solid;
+  border-color: #2E3440;
+}
+
+.dot-average{
+  height: 4vh;
+  width: 4vh;
+  background-color: #EBCB8B;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.5vw;
+}
+
+.dot-average:hover{
+  border-style: solid;
+  border-color: #2E3440;
+}
+
+.dot-bad{
+  height: 4vh;
+  width: 4vh;
+  background-color: #D08770;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.5vw;
+}
+
+.dot-bad:hover{
+  border-style: solid;
+  border-color: #2E3440;
+}
+
+.dot-extreme{
+  height: 4vh;
+  width: 4vh;
+  background-color: #BF616A;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.5vw;
+}
+
+
+.dot-extreme:hover{
+  border-style: solid;
+  border-color: #2E3440;
+}
+
+.line{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media only screen and (max-width: 1100px) {

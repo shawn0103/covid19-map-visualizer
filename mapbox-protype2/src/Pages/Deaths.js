@@ -5,6 +5,7 @@ import PieChart from '../Components/PieChart';
 import BarChart from '../Components/BarChart';
 import stats from '../data/stats.json'
 import {BrowserView, MobileView} from 'react-device-detect';
+import { Tooltip } from 'react-tooltip'
 
 function Deaths() {
   
@@ -12,17 +13,17 @@ function Deaths() {
     <div className="App">
       <BrowserView>
       <div className='NavBar'>
-        <h1>COVID-19 Dashboard</h1>
+       <h1>COVID-19 across the world</h1>
       </div>
         <div className='Map-Selection'>
             <a href="/deaths">
-                <button className='btn-current' onClick={() => window.location.reload(true)}>Total Deaths</button>
+                <button data-tooltip-id="btn2" data-tooltip-content="Total COVID-19 Deaths" data-tooltip-place="bottom" className='btn-current' onClick={() => window.location.reload(true)}>Total Deaths</button>
             </a>
             <a href="/">
-                <button className='btn' onClick={() => window.location.reload(true)}>Case fatality ratio</button>
+                <button data-tooltip-id="btn2" data-tooltip-content="A ratio of cases per death" data-tooltip-place="bottom" className='btn' onClick={() => window.location.reload(true)}>Case fatality ratio</button>
             </a>
             <a href="/casesper1000">
-            <button className='btn' onClick={() => window.location.reload(true)}>Cases per 1000 people</button>
+            <button data-tooltip-id="btn2" data-tooltip-content="Number of cases per 1000 people" data-tooltip-place="bottom" className='btn' onClick={() => window.location.reload(true)}>Cases per 1000 people</button>
             </a>
           </div>
           <div className='disclaimer'>Disclaimer: This visualization may take time to load as the dataset is roughly 200mb in size</div>
@@ -30,8 +31,26 @@ function Deaths() {
           <div className='Stats'>
           <div className='card'>
               <div className='card-text-container'>
-              <h3 className='card-title'> How are the metrics calculated?</h3>
-                <h4>Each recorded death is grouped into clusters. The colors and sizes of the clusters represent their density.</h4>
+                <div className='line-container'>
+                  <div className='line'>
+                    <span className="dot-good"></span>
+                    <h3 id='left'>- Good</h3>
+                  </div>
+                  <div className='line'>
+                    <span className="dot-average"></span>
+                    <h3>- Average</h3>
+                  </div>
+                </div>
+                <div className='line-container'>
+                <div className='line'>
+                    <span className="dot-bad"></span>
+                    <h3 id='left'>- Bad</h3>
+                  </div>
+                  <div className='line'>
+                    <span className="dot-extreme"></span>
+                    <h3>- Extreme</h3>
+                  </div>
+                </div>
               </div>
             </div>
             <div className='card'>
@@ -69,6 +88,7 @@ function Deaths() {
           <h3>Unfortunately the COVID-19 Dashboard does not support mobile devices due to hardware limitations. Please try again using a desktop computer.</h3>
           </div>
         </MobileView>
+        <Tooltip id='btn2'/>
       </div>
   );
 }
