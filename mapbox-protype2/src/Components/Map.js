@@ -1,7 +1,6 @@
 import React, { useRef, useEffect} from 'react';
 import './map.css'
-import mapboxgl, {NavigationControl} from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-import case_fatality_json from '../data/case_fatality_ratio.json'
+import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 const Map = (props) => {
   
   //?raw=true
