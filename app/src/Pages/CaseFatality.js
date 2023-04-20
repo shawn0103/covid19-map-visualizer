@@ -9,17 +9,7 @@ import { Tooltip } from 'react-tooltip'
 
 function CaseFatality() {
 
-
-  /*
-  useEffect(() => {
-    if(reloadCount < 2) {
-      sessionStorage.setItem('reloadCount', String(reloadCount + 1));
-      window.location.reload();
-    } else {
-      sessionStorage.removeItem('reloadCount');
-    }
-  }, []);
-*/
+console.log(`height: ${window.innerHeight}`);
   return (
     <div className="App">
       <BrowserView>
