@@ -1,6 +1,6 @@
 import React, { useRef, useEffect} from 'react';
 import './map.css'
-import mapboxgl from '!mapbox-gl'; 
+import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 
 //Documentation followed: https://docs.mapbox.com/mapbox-gl-js/example/cluster/
 
