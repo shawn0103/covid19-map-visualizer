@@ -1,6 +1,7 @@
 import React, { useRef, useEffect} from 'react';
 import './map.css'
-import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import mapboxgl, {NavigationControl} from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import case_fatality_json from '../data/case_fatality_ratio.json'
 const Map = (props) => {
   
   //?raw=true
@@ -474,6 +475,9 @@ const cases_per_1000 = props.cases_per_1000;
               });
         }
       })
+      map.current.addControl((new mapboxgl.NavigationControl({
+        showCompass: false
+      })));
      // map.current.legendControl.addLegend(document.getElementById('legend').innerHTML);
       });
     return (
