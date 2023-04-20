@@ -1,30 +1,27 @@
 import React, { useRef, useEffect} from 'react';
 import './map.css'
-import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import mapboxgl from '!mapbox-gl'; 
+
+//Documentation followed: https://docs.mapbox.com/mapbox-gl-js/example/cluster/
+
 const Map = (props) => {
   
-  //?raw=true
+    //Mapbox Api key
     mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY;
 
+    //Map and map container
     const mapContainer = useRef(null);
     const map = useRef(null);
-    /*
-    const [lng, setLng] = useState(17.67);
-    const [lat, setLat] = useState(30.08);
-    const [zoom, setZoom] = useState(1.75);
-*/
+
+    //Default position for the map 
     const lng = 17.67;
     const lat = 30.08;
     const zoom = 1.75;
-/*
-    const [totalDeaths, loadTotalDeaths] = useState(props.totalDeaths);
-    const [case_fatality, loadCase_fatality] = useState(props.case_fatality);
-    const [cases_per_1000, loadCases_per_1000] = useState(props.cases_per_1000);
-*/
 
-const totalDeaths = props.totalDeaths;
-const case_fatality = props.case_fatality;
-const cases_per_1000 = props.cases_per_1000;
+    //Props to load the data from the front end (not implemented)
+    const totalDeaths = props.totalDeaths;
+    const case_fatality = props.case_fatality;
+    const cases_per_1000 = props.cases_per_1000;
 
     useEffect(() => {
       if (map.current) return;
@@ -42,19 +39,19 @@ const cases_per_1000 = props.cases_per_1000;
       });
       console.log(`not event zoom: ${map.current.getZoom()}`)
       map.current.on('load', () => {
+        //Loading map data fromt the GeoJSONs
         map.current.addSource('covid', {
           type: 'geojson',
           ...(case_fatality && { data: "https://media.githubusercontent.com/media/shawn0103/covid19-map-data/master/case_fatality_ratio.json" }),
           ...(totalDeaths && { data: "https://media.githubusercontent.com/media/shawn0103/covid19-map-data/master/deaths.json" }),
           ...(cases_per_1000 && { data: "https://media.githubusercontent.com/media/shawn0103/covid19-map-data/master/cases_per_1000.json" }),
-          //...(case_fatality && { data: "http://localhost:4000/fetchCaseFatality" }),
-          //...(totalDeaths && { data: "http://localhost:4000/fetchTotalDeaths" }),
-          //..(cases_per_1000 && { data: "http://localhost:4000/fetchCasesPer1000" }),
+          //Cluster properties
           cluster: true,
           clusterMaxZoom: 14, 
           clusterRadius: 50 
           });
   
+          //Default cluster sizes
           map.current.addLayer({
             id: 'clusters',
             type: 'circle',
@@ -127,7 +124,7 @@ const cases_per_1000 = props.cases_per_1000;
                 ]
                 } })
             });
-
+        
             map.current.addLayer({
               id: 'cluster-count',
               type: 'symbol',
@@ -154,6 +151,7 @@ const cases_per_1000 = props.cases_per_1000;
               });
       })
 
+      //Dynamic zooming which chagnes cluster colors on zoom
       map.current.on('zoom', () =>{
         console.log(`event zoom: ${map.current.getZoom()}`);
         if(map.current.getZoom() > 4){
@@ -477,7 +475,6 @@ const cases_per_1000 = props.cases_per_1000;
       map.current.addControl((new mapboxgl.NavigationControl({
         showCompass: false
       })));
-     // map.current.legendControl.addLegend(document.getElementById('legend').innerHTML);
       });
     return (
       <div ref={mapContainer} className="map-container" />
