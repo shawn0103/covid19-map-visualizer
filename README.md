@@ -10,8 +10,8 @@ Currently live at https://covid-19-map-visualizer.netlify.app/
 
 ### Folder structure
 
-GeoJSON: Folder to store the GeoJSON's
-JuypterNotebook: Data cleaning, exploration and analysis.
+GeoJSON: Folder to store the GeoJSON's <br/>
+JuypterNotebook: Data cleaning, exploration and analysis. <br/>
 app: React.Js app for the dashboard 
 
 ### How to run the dashboard?
@@ -20,6 +20,7 @@ app: React.Js app for the dashboard
 node package manager v.7
 
 #### Guide
+Navigate to the /app directory
 ```
 npm install
 ```
