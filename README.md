@@ -14,5 +14,15 @@ GeoJSON: Folder to store the GeoJSON's
 JuypterNotebook: Data cleaning, exploration and analysis.
 app: React.Js app for the dashboard 
 
-### How to run?
+### How to run the dashboard?
 
+#### Prerequisites
+node package manager v.7
+
+#### Guide
+```
+npm install
+```
+```
+npm start
+```
