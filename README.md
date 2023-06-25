@@ -6,7 +6,6 @@
 
 A COVID-19 dashboard with an interactive map which has the ability to  
 zoom in and out of regions while dynamically scaling the data to eliminate biases. <br/>
-Currently live at https://covid-19-map-visualizer.netlify.app/
 
 ### Folder structure
 
